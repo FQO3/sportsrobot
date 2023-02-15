@@ -1,2 +1,2 @@
 # sportsrobot
-这是我的程序存储界面，final里面的东西就是我的程序，里面的data文件夹是我的html文件
+运动陪练机器人程序存储界面，具体程序祥见final文件夹的final2.ino，HTML文件见data文件夹
