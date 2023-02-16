@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>陪练机器人控制平台</title>
+	</head>
+	<body>
+		<center>
+			<h1>管理员页面</h1>
+			<script type="text/javascript">
+				window.onload = function () {
+					document.getElementById("mybtn").onclick = function () {
+						// 发送AJAX POST请求
+						// 1. 创建AJAX核心对象
+						var xhr = new XMLHttpRequest();
+						// 2. 注册回调函数
+						xhr.onreadystatechange = function (){
+							if (this.readyState == 4) {
+								if (this.status == 200) {
+									document.getElementById("mydiv").innerHTML = this.responseText
+								}
+							}
+						}
+						// 3. 开启通道
+						xhr.open("POST", "/PU", true)
+			 
+						// 4. 发送请求
+						xhr.send()
+					}
+				}
+			</script>
+			<button id=mybtn>俯卧撑+1</button>
+		</center>
+	</body>
+</html>
