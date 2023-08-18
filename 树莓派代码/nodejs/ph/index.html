@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>手机版陪练机器人控制平台</title>
+		<style>
+			body{
+			  background-image: linear-gradient(to bottom right, #C9FAFF, #FFFFAB); background-repeat:no-repeat; background-attachment: fixed;
+			}
+			.button {
+			  background-color: #3AABDE;
+			  border: none;
+			  color: white;
+			  padding: 16px 32px;
+			  width: 280px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 40px;
+			  margin: 4px 2px;
+			  transition-duration: 0.4s;
+			  cursor: pointer;
+			  border-radius: 30px;
+			}
+
+			.button1 {
+			  background-color: white; 
+			  color: black; 
+			  border: 2px solid #3AABDE;
+			}
+
+			.button1:hover {
+			  background-color: #3AABDE;
+			  color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+		<h1 style="font-size:80px">陪练机器人控制平台</h1>
+		<p style="color:gray;line-height:0.3;font-size: 40px">V3.1.8 手机版</p>
+		</center>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="50%">
+				<center>
+					<h2 style="font-size: 60px;">机器人陪练演示</h2>
+					<p><a href="ctrl.html"><button class="button button1">机器人总控</button></a></p>
+					<h3 style="font-size: 40px;">准备活动</h3>
+					<p><button class="button button1" onclick="sendData('?act=25')">准备活动</button></p>
+					<h3 style="font-size: 40px;">正式训练</h3>
+					<p><button class="button button1" onclick="sendData('?act=7')">俯卧撑</button></p>
+					<p><button class="button button1" onclick="sendData('?act=5')">前滚翻</button></p>
+					<p><button class="button button1" onclick="sendData('?act=6')">后滚翻</button></p>
+					<p><button class="button button1" onclick="sendData('?act=26')">蹲起</button></p>
+					<h3 style="font-size: 40px;">放松拉伸</h3>
+					<p><button class="button button1" onclick="sendData('?act=27')">拉伸</button></p>
+				</center>
+				</td>
+				<td>
+					<center>
+					<h2 style="font-size: 60px;">训练模式</h2>
+					<h3 style="font-size: 40px;">进入俯卧撑训练页面</h3>
+					<p><a href="pushup.html"><button class="button button1">俯卧撑计数</button></a></p>
+					<h3 style="font-size: 40px;">进入侧平举计时页面</h3>
+					<p><a href="armup.html"><button class="button button1">侧平举计时</button></a></p>
+					<h2 style="font-size: 60px;">娱乐模式</h2>
+					<p><a href="ctrl.html"><button class="button button1" onclick="sendData('?act=e');alert('已开启手臂动作跟踪模式\n请留意机器人，不要卡死舵机')">手臂跟随</button></a></p>
+					</center>
+				</td>
+			</tr>
+		</table>
+		<script>
+			function sendData(dat) 
+			{
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function()
+				{
+					if (this.readyState == 4 && this.status == 200)
+					{
+						document.getElementById("ind").innerHTML =this.responseText;
+					}
+				};
+				xhttp.open("POST","/api"+dat, true);
+				xhttp.send();
+			}
+		</script>
+	</body>
+</html>

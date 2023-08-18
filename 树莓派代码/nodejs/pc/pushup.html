@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>陪练机器人控制平台</title>
+		<script src="jquery.min.js"></script>
+	</head>
+	<style>
+		body{
+		  background-image: linear-gradient(to bottom right, #C9FAFF, #FFFFAB); background-repeat:no-repeat; background-attachment: fixed;
+		}
+		.back{
+			background-color: #92B818;
+			border: none;
+			color: white;
+			padding: 13px 15px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+			border-radius: 1000px;
+		}
+		.back1 {
+			background-color: white; 
+			color: black; 
+			border: 2px solid #92B818;
+		}
+		.back1:hover {
+			background-color: #92B818;
+			color: white;
+		}
+		.flex{
+        display: flex;
+        list-style: none;
+		}
+
+		.loading{
+			width: 150px;
+			height: 200px;
+		}
+	
+		.loading>li{
+			--time: calc((var(--line-index) - 1) * 200ms);
+			border-radius: 6px;
+			width: 14px;
+			height: 80px;
+			background-color: rgb(180, 180, 180);
+			animation: beat 1.5s ease-in-out var(--time) infinite;
+	
+		}
+		.loading>li+li{
+			margin-left: 5px;
+		}
+		@keyframes beat{
+			0%,
+			100% {
+			transform: scaleY(1);
+			}
+			50% {
+			transform: scaleY(.5);
+			}
+		}
+		.gif{
+			position:absolute;
+			left:0;
+			top:0;
+			height:100vh;
+			width:100vw;
+			z-index:1;
+			display:none;
+			align-items: center;
+			justify-content: center;
+			background-color:rgba(0,0,0,0.5);
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			$(".gif").css("display","flex");
+			a=setInterval(function(){
+				var xhttp = new XMLHttpRequest();
+				var ready = "0"
+				xhttp.onreadystatechange = function() 
+				{
+					if (this.readyState == 4 && this.status == 200) 
+					{
+						if(this.responseText=="1")
+						{
+							clearInterval(a);
+							$(".gif").css("display","none");
+						}
+					}
+				};
+					xhttp.open("POST", "/pushup.html", true);
+					xhttp.send();
+					
+			}, 1000);
+		}
+	</script>
+	<body>
+		<div class = "gif">
+			<ul class="loading flex">
+				<li style="--line-index: 1;"></li>
+				<li style="--line-index: 2;"></li>
+				<li style="--line-index: 3;"></li>
+				<li style="--line-index: 4;"></li>
+				<li style="--line-index: 5;"></li>
+				<li style="--line-index: 6;"></li>
+			</ul>
+		</div>
+		<center>
+			<h1>陪练机器人控制平台</h1>
+			<h2>俯卧撑训练页面</h2>
+			<h3>俯卧撑个数：<span id="PUValue">NA</span>个</h3>
+			<button type="button" onclick="sendData('/api?act=28')" class="back back1">机器人准备</button>
+			<button type="button" onclick="sendData('/api?act=30');sendData('/PUc');" class="back back1">机器人起立</button>
+			<br><br><br>
+			<button type="button" onclick="sendData('/api?act=29')" class="back back1">机器人俯卧撑演示</button>
+			<br>
+			<br>
+			<br>
+			<a href="ctrl.html" target="_blank"><button class="back back1">机器人其他控制</button></a>
+			<br>
+			<br>
+			<br>
+			<button type="button" onclick="reset()" class="back back1">计数器归零</button>
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<a href="index.html"><button class="back back1">返回首页</button></a>
+		</center>
+	</body>
+	<script>
+		function reset()
+		{
+			if(confirm("确认要归零吗？\n数据将不可恢复"))
+			{
+				alert("已归零");
+				sendData('/PUc');
+			}
+			
+		}
+		function sendData(dat) 
+		{
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function()
+			{
+				if (this.readyState == 4 && this.status == 200)
+				{
+					document.getElementById("PUState").innerHTML =this.responseText;
+				}
+			};
+		  xhttp.open("POST", dat, true);
+		  xhttp.send();
+		}
+		setInterval(function() 
+		{
+			getData();
+		}, 1000);
+		function getData() 
+		{
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() 
+			{
+				if (this.readyState == 4 && this.status == 200) 
+				{
+					document.getElementById("PUValue").innerHTML =
+					this.responseText;
+				}
+			};
+			xhttp.open("GET", "readPU", true);
+			xhttp.send();
+		}
+		</script>
+</html>

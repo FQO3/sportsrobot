@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>陪练机器人控制平台</title>
+		<style>
+			body{
+			  background-image: linear-gradient(to bottom right, #C9FAFF, #FFFFAB); background-repeat:no-repeat; background-attachment: fixed;
+			}
+			.button {
+				background-color: #3AABDE;
+				border: none;
+				color: white;
+				padding: 16px 20px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				transition-duration: 0.4s;
+				cursor: pointer;
+				border-radius: 1000px;
+			}
+			.button1 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:150px;
+				top:110px;
+			}
+			.button1:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.button2 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:80px;
+				top:180px;
+			}
+			.button2:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.button3 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:150px;
+				top:250px;
+			}
+			.button3:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.button4 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:220px;
+				top:180px;
+			}
+			.button4:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.button5 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #00D000;
+				position:absolute;
+				left:350px;
+				top:120px;
+			}
+			.button5:hover {
+				background-color: #00D000;
+				color: white;
+			}
+			.button6 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:50px;
+				top:320px;
+			}
+			.button6:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.button7 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:220px;
+				top:320px;
+			}
+			.button7:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.button8 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:900px;
+				top:150px;
+			}
+			.button8:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.button9 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:1100px;
+				top:150px;
+			}
+			.button9:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.button10 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:900px;
+				top:250px;
+			}
+			.button10:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.button11 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #3AABDE;
+				position:absolute;
+				left:1100px;
+				top:250px;
+			}
+			.button11:hover {
+				background-color: #3AABDE;
+				color: white;
+			}
+			.input1{
+				position:absolute;
+				left:550px;
+				top:140px;
+			}
+			.input2{
+				position:absolute;
+				left:550px;
+				top:170px;
+				background-color: #F6A116;
+				border: none;
+				color: white;
+				padding: 10px 15px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 5px;
+				margin: 4px 2px;
+				transition-duration: 0.4s;
+				cursor: pointer;
+				border-radius: 10px;
+			}
+			.back{
+				background-color: #92B818;
+				border: none;
+				color: white;
+				padding: 13px 15px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				transition-duration: 0.4s;
+				cursor: pointer;
+				border-radius: 1000px;
+			}
+			.back1 {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #92B818;
+				position:absolute;
+				left:57%;
+				top:60%;
+			}
+			.back1:hover {
+				background-color: #92B818;
+				color: white;
+			}
+			.photo {
+				width: 250px;
+				position: absolute;
+				left: 1400px;
+				top: 50px;
+				border-radius: 30px;
+				box-shadow: 0px 0px 20px 10px #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+		<h1>陪练机器人控制平台</h1>
+		<h2>机器人控制页面</h2>
+		</center>
+		<button class="button button1" onclick="sendData('1')">前</button>
+		<button class="button button2" onclick="sendData('3')">左</button>
+		<button class="button button3" onclick="sendData('2')">后</button>
+		<button class="button button4" onclick="sendData('4')">右</button>
+		<button class="button button5" onclick="sendData('0')">立正</button>
+		<button class="button button6" onclick="sendData('11')">左侧滑</button>
+		<button class="button button7" onclick="sendData('12')">右侧滑</button>
+		<form method="post">
+			<input class="input1" id="act" type="number" placeholder="请输入动作组序号"/>
+			<input class="input2" type="button" value="运行" onclick="sendactionData();clean()">
+		</form>
+		<button class="button button8" onclick="sendData('a');">江南Style</button>
+		<button class="button button9" onclick="sendData('b');">小苹果</button>
+		<button class="button button10" onclick="sendData('c');">La Song</button>
+		<button class="button button11" onclick="sendData('d');">倍儿爽</button>
+		<img src="act_list.png" class="photo">
+		<p><a href="index.html"><button class="back back1">返回主页</button></a></p>
+		
+	</body>
+	<script>
+	function clean()
+	{
+		document.getElementById('act').value='';
+	}
+	function sendactionData() 
+	{
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				document.getElementById("ctrl").innerHTML =this.responseText;
+			}
+		};
+		var val=document.getElementById("act").value;
+		xhttp.open("POST", "/api?act="+val , true);
+		xhttp.send();
+	}
+	function sendData(dat) 
+	{
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				document.getElementById("ctr").innerHTML =this.responseText;
+			}
+		};
+		xhttp.open("POST", "/api?act="+dat, true);
+		xhttp.send();
+	}
+	</script>
+</html>
